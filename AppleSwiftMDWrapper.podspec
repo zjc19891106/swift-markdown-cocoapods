@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = "AppleSwiftMDWrapper"
-    s.version          = "1.0.0"
+    s.version          = "1.1.0"
     s.summary          = "CocoaPods wrapper for Apple's official swift-markdown library."
     s.description      = <<-DESC
                          Provides the Markdown module for parsing, building, editing, and analyzing Markdown documents.
@@ -24,12 +24,13 @@ Pod::Spec.new do |s|
     s.module_name      = "Markdown"
 
     # 关键修复：调整为官方平级结构（*.swift 而非 **/*.swift）
+    
     s.source_files = [
-        "Sources/Markdown/*.swift",            # 平级所有 Swift 文件
-        "Sources/CAtomic/**/*.{h,c}",          # CAtomic
-        "swift-cmark/src/**/*.{h,c}",          # cmark src
-        "swift-cmark/extensions/**/*.{h,c}"    # extensions
-    ]
+    "Sources/Markdown/**/*.swift",         # 递归匹配所有子目录下的 Swift 文件（关键！）
+    "Sources/CAtomic/**/*.{h,c}",
+    "swift-cmark/src/**/*.{h,c}",
+    "swift-cmark/extensions/**/*.{h,c}"
+]
 
     s.preserve_paths = [
         "README.md",
